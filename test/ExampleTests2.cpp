@@ -8,7 +8,7 @@ TEST(SecondTests, firstTestCase)
 
 TEST(SecondTests, secondTestCase)
 {
-    ASSERT_TRUE(true);
+    ASSERT_TRUE(false);
 
     Example ex = Example();
 }
