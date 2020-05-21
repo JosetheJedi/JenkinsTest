@@ -12,3 +12,8 @@ TEST(SecondTests, secondTestCase)
 
     Example ex = Example();
 }
+
+TEST(SecondTests, thirdTestCase)
+{
+    ASSERT_TRUE(true);
+}
