@@ -11,7 +11,7 @@ pipeline
                     ls
                     g++ -isystem ./googletest/googletest/include/ -I./googletest/googletest/ -pthread -c ./googletest/googletest/src/gtest-all.cc ./googletest/googletest/src/gtest_main.cc
 
-                    ar -rv gtest_main.a gtest_main.o gtest-all.o
+                    ar -rv .googletest/googletest/gtest_main.a gtest_main.o gtest-all.o
 
                     echo "Building Project"
 
