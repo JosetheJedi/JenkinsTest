@@ -17,7 +17,7 @@ pipeline
 
                     cd build
 
-                    g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTest.cpp ../test/ExampleTest2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
+                    g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTests.cpp ../test/ExampleTests2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
                 '''
             }
         }
