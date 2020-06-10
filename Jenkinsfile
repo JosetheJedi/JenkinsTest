@@ -8,7 +8,10 @@ pipeline
             steps{
                 sh '''
                     echo "Building project"
-                    cmakeBuild buildDir: 'build', buildType: 'Release', cleanBuild: true, installation: 'InSearchPath', steps: [[withCmake: true]]
+                    ls
+                    g++ -isystem ./googletest/googletest/include/ -I./googletest/googletest/ -pthread -c ./googletest/googletest/src/gtest-all.cc ./googletest/googletest/src/gtest_main.cc
+
+                    ar -rv gtest_main.a gtest_main.o gtest-all.o
                 '''
             }
         }
@@ -17,7 +20,7 @@ pipeline
             steps{
                 sh '''
                     echo "Starting google test"
-                    build/test/UnitTests --gtest_output="xml:testresults.xml"
+                    ls
                 '''
             }
         }
