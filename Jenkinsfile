@@ -12,6 +12,12 @@ pipeline
                     g++ -isystem ./googletest/googletest/include/ -I./googletest/googletest/ -pthread -c ./googletest/googletest/src/gtest-all.cc ./googletest/googletest/src/gtest_main.cc
 
                     ar -rv gtest_main.a gtest_main.o gtest-all.o
+
+                    echo "Building Project"
+
+                    cd build
+
+                    g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTest.cpp ../test/ExampleTest2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
                 '''
             }
         }
