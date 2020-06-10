@@ -26,7 +26,7 @@ pipeline
             steps{
                 sh '''
                     echo "Starting google test"
-                    ls
+                    build/ExampleTests
                 '''
             }
         }
