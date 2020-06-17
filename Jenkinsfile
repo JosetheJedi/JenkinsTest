@@ -6,7 +6,7 @@ pipeline
         stage("Build")
         {
             steps{
-                cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: 'src'
+                cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: '~/Desktop/JenkinsTest'
             }
         }
         stage("Run Google Test")
