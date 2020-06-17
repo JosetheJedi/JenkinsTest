@@ -12,6 +12,11 @@ pipeline
 
                 '''
                 cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: './'
+
+                sh '''
+                ls 
+                ls build
+                '''
             }
         }
         stage("Run Google Test")
