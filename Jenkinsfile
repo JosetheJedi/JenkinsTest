@@ -26,7 +26,8 @@ pipeline
             steps{
                 sh '''
                     echo "Starting google test"
-                    build/ExampleTests --gtest_output="xml:testresults.xml"
+                    cd test
+                    ./UnitTests --gtest_output="xml:testresults.xml"
                 '''
             }
         }
@@ -34,11 +35,11 @@ pipeline
     post 
     {
         always {
-            archiveArtifacts 'testresults.xml'
+            archiveArtifacts 'build/test/testresults.xml'
             cleanWs()
         }
         failure {
-            archiveArtifacts 'build/testresults.xml'
+            archiveArtifacts 'build/test/testresults.xml'
         }
     }
 }
