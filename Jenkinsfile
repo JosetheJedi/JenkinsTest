@@ -16,6 +16,8 @@ pipeline
                 sh '''
                 ls 
                 ls build
+                cd build 
+                make
                 '''
             }
         }
