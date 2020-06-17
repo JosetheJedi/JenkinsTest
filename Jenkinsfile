@@ -11,7 +11,7 @@ pipeline
                 ls -lah
 
                 '''
-                cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: '~/Desktop/JenkinsTest'
+                cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: './'
             }
         }
         stage("Run Google Test")
