@@ -6,19 +6,7 @@ pipeline
         stage("Build")
         {
             steps{
-                sh '''
-                    echo "Building project"
-                    ls
-                    g++ -isystem ./googletest/googletest/include/ -I./googletest/googletest/ -pthread -c ./googletest/googletest/src/gtest-all.cc ./googletest/googletest/src/gtest_main.cc
-
-                    ar -rv ./googletest/googletest/gtest_main.a gtest_main.o gtest-all.o
-
-                    echo "Building Project"
-
-                    cd build
-
-                    g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTests.cpp ../test/ExampleTests2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
-                '''
+                cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: 'src'
             }
         }
         stage("Run Google Test")
