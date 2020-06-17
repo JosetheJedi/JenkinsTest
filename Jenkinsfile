@@ -26,7 +26,7 @@ pipeline
             steps{
                 sh '''
                     echo "Starting google test"
-                    cd test
+                    cd build/test
                     ./UnitTests --gtest_output="xml:testresults.xml"
                 '''
             }
