@@ -6,6 +6,11 @@ pipeline
         stage("Build")
         {
             steps{
+                sh '''
+                ls 
+                ls -lah
+
+                '''
                 cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: '~/Desktop/JenkinsTest'
             }
         }
