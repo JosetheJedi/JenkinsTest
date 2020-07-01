@@ -1,0 +1,44 @@
+pipeline 
+{
+    agent any
+    stages 
+    {
+        stage("Build")
+        {
+            steps{
+                sh '''
+                ls 
+                ls -lah
+
+                '''
+                cmakeBuild buildDir: 'cmake-test/build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: 'cmake-test'
+
+                sh '''
+                ls 
+                cd cmake-test/build 
+                make
+                '''
+            }
+        }
+        stage("Run Google Test")
+        {
+            steps{
+                sh '''
+                    echo "Starting google test"
+                    cd cmake-test/build/test
+                    ./UnitTests --gtest_output="xml:testresults.xml"
+                '''
+            }
+        }
+    }
+    post 
+    {
+        always {
+            archiveArtifacts 'cmake-test/build/test/testresults.xml'
+            cleanWs()
+        }
+        failure {
+            archiveArtifacts 'cmake-test/build/test/testresults.xml'
+        }
+    }
+}

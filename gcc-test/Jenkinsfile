@@ -9,13 +9,14 @@ pipeline
                 sh '''
                     echo "Building project"
                     ls
-                    g++ -isystem ./googletest/googletest/include/ -I./googletest/googletest/ -pthread -c ./googletest/googletest/src/gtest-all.cc ./googletest/googletest/src/gtest_main.cc
+                    g++ -isystem gcc-test/googletest/googletest/include/ -Igcc-test/googletest/googletest/ -pthread -c gcc-test/googletest/googletest/src/gtest-all.cc gcc-test/googletest/googletest/src/gtest_main.cc
 
-                    ar -rv ./googletest/googletest/gtest_main.a gtest_main.o gtest-all.o
+                    ar -rv gcc-test/googletest/googletest/gtest_main.a gtest_main.o gtest-all.o
 
                     echo "Building Project"
 
-                    cd build
+                    mkdir gcc-test/build
+                    cd gcc-test/build
 
                     g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTests.cpp ../test/ExampleTests2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
                 '''
@@ -26,7 +27,7 @@ pipeline
             steps{
                 sh '''
                     echo "Starting google test"
-                    build/ExampleTests --gtest_output="xml:testresults.xml"
+                    gcc-test/build/ExampleTests --gtest_output="xml:testresults.xml"
                 '''
             }
         }
@@ -38,7 +39,7 @@ pipeline
             cleanWs()
         }
         failure {
-            archiveArtifacts 'build/testresults.xml'
+            archiveArtifacts 'testresults.xml'
         }
     }
 }

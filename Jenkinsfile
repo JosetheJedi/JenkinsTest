@@ -1,45 +1,15 @@
-pipeline 
+pipeline
 {
+
     agent any
-    stages 
+    stages
     {
-        stage("Build")
+        stage("Hello")
         {
-            steps{
-                sh '''
-                ls 
-                ls -lah
+            sh '''
+                echo "Hello World"
 
-                '''
-                cmakeBuild buildDir: 'build', buildType: 'Debug', cleanBuild: true, generator: 'Unix Makefiles', installation: 'InSearchPath', sourceDir: './'
-
-                sh '''
-                ls 
-                ls build
-                cd build 
-                make
-                '''
-            }
-        }
-        stage("Run Google Test")
-        {
-            steps{
-                sh '''
-                    echo "Starting google test"
-                    cd build/test
-                    ./UnitTests --gtest_output="xml:testresults.xml"
-                '''
-            }
-        }
-    }
-    post 
-    {
-        always {
-            archiveArtifacts 'build/test/testresults.xml'
-            cleanWs()
-        }
-        failure {
-            archiveArtifacts 'build/test/testresults.xml'
+            '''
         }
     }
 }
