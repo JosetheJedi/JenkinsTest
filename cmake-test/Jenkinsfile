@@ -7,11 +7,17 @@ pipeline
         skipDefaultCheckout()
     }
 
+    triggers {
+        upstream(upstreamProjects: "MyProjectSCM")
+    }
+
     stages 
     {
         stage("Build")
         {
-            steps{
+            lock("MyProjectSCM")
+            {
+                steps{
                 sh '''
                 ls 
                 ls -lah
@@ -24,6 +30,7 @@ pipeline
                 cd cmake-test/build 
                 make
                 '''
+            }
             }
         }
         stage("Run Google Test")

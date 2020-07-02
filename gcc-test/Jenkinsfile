@@ -7,11 +7,17 @@ pipeline
         skipDefaultCheckout()
     }
 
+    triggers {
+        upstream(upstreamProjects: "MyProjectSCM")
+    }
+
     stages 
     {
         stage("Build")
         {
-            steps{
+            lock("MyProjectSCM")
+            {
+                steps{
                 sh '''
                     echo "Building project"
                     ls
@@ -26,6 +32,7 @@ pipeline
 
                     g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTests.cpp ../test/ExampleTests2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
                 '''
+            }
             }
         }
         stage("Run Google Test")
