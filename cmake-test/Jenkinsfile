@@ -15,7 +15,7 @@ pipeline
     {
         stage("Build")
         {
-            lock("MyProjectSCM")
+            lock('MyProjectSCM') 
             {
                 steps{
                 sh '''
@@ -30,7 +30,7 @@ pipeline
                 cd cmake-test/build 
                 make
                 '''
-            }
+                }
             }
         }
         stage("Run Google Test")
