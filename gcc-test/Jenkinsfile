@@ -22,14 +22,14 @@ pipeline
                     echo "Building project"
                     ls ..
                     ls ../MyProjectSCM
-                    g++ -isystem gcc-test/googletest/googletest/include/ -Igcc-test/googletest/googletest/ -pthread -c gcc-test/googletest/googletest/src/gtest-all.cc gcc-test/googletest/googletest/src/gtest_main.cc
+                    g++ -isystem ../MyProjectSCM/gcc-test/googletest/googletest/include/ -I../MyProjectSCM/gcc-test/googletest/googletest/ -pthread -c ../MyProjectSCM/gcc-test/googletest/googletest/src/gtest-all.cc ../MyProjectSCM/gcc-test/googletest/googletest/src/gtest_main.cc
 
-                    ar -rv gcc-test/googletest/googletest/gtest_main.a gtest_main.o gtest-all.o
+                    ar -rv ../MyProjectSCM/gcc-test/googletest/googletest/gtest_main.a gtest_main.o gtest-all.o
 
                     echo "Building Project"
 
-                    mkdir gcc-test/build
-                    cd gcc-test/build
+                    mkdir ../MyProjectSCM/gcc-test/build
+                    cd ../MyProjectSCM/gcc-test/build
 
                     g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTests.cpp ../test/ExampleTests2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
                 '''
@@ -42,7 +42,7 @@ pipeline
             steps{
                 sh '''
                     echo "Starting google test"
-                    gcc-test/build/ExampleTests --gtest_output="xml:testresults.xml"
+                    ../MyProjectSCM/gcc-test/build/ExampleTests --gtest_output="xml:testresults.xml"
                 '''
             }
         }
