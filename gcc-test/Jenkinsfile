@@ -28,7 +28,6 @@ pipeline
 
                     echo "Building Project"
 
-                    mkdir ../MyProjectSCM/gcc-test/build
                     cd ../MyProjectSCM/gcc-test/build
 
                     g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTests.cpp ../test/ExampleTests2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
