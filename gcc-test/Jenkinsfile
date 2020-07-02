@@ -27,7 +27,7 @@ pipeline
                     ar -rv ../MyProjectSCM/gcc-test/googletest/googletest/gtest_main.a gtest_main.o gtest-all.o
 
                     echo "Building Project"
-
+                    ls ../MyProjectSCM/gcc-test/
                     mkdir ../MyProjectSCM/gcc-test/build
                     cd ../MyProjectSCM/gcc-test/build
 
