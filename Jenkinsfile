@@ -9,6 +9,7 @@ pipeline
 	    steps{
             sh '''
                 echo "Hello World"
+		echo "Another test"
 
             '''
 	    }
