@@ -48,7 +48,7 @@ pipeline
     post 
     {
         always {
-            archiveArtifacts 'testresults.xml'
+            archiveArtifacts '/../MyProjectSCM/testresults.xml'
             cleanWs()
         }
         failure {
