@@ -28,7 +28,14 @@ pipeline
 
                     echo "Building Project"
                     ls ../MyProjectSCM/gcc-test/
-                    mkdir ../MyProjectSCM/gcc-test/build
+                    
+                    if [ ! -d "../MyProjectSCM/gcc-test/build" ] 
+                    then
+                        echo "../MyProjectSCM/gcc-test/build" 
+                    else
+                        echo "../MyProjectSCM/gcc-test/build exists."
+                    fi
+
                     cd ../MyProjectSCM/gcc-test/build
 
                     g++ -isystem ../googletest/googletest/include/ -pthread ../Example.cpp ../test/ExampleTests.cpp ../test/ExampleTests2.cpp ../googletest/googletest/gtest_main.a -o ExampleTests
