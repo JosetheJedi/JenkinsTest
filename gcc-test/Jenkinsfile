@@ -7,9 +7,7 @@ pipeline
         skipDefaultCheckout()
     }
 
-    triggers {
-        upstream(upstreamProjects: "MyProjectSCM")
-    }
+    triggers { upstream(upstreamProjects: 'MyProjectSCM', threshold: hudson.model.Result.SUCCESS) }
 
     stages 
     {
