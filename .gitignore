@@ -1,1 +1,3 @@
 build/*
+test.sh
+test-bkp.sh
